@@ -1,6 +1,6 @@
 # Project Name
 ### KidFriendlySocial: Making social media safe and fun for kids!
-![logo](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/logo.png)
+![logo](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/logo.png)
 # Project Intro/Objective
 With the rise of social media use among younger generations, it is important to ensure that the content they are exposed to is appropriate and free from harmful language.
 
@@ -44,7 +44,7 @@ The data for this project was obtained from two distinct sources, firstly from a
 The data from twitter api is very relevant in order to obtain latest data from twitter to use to train the data.
 An example of the way i used doccana to label the dataset is shown below:
 
-![doccana_labelling](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/data%20labelling.jpg)
+![doccana_labelling](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/data%20labelling.jpg)
 
 ### Database
 Relational databse, MYSQL,  is the database of choice to store all user details related to authentications and user feedbacks in order to score the model in production and also to add actual tweets from users to use as training data to improve the model in the next version. The MYSQL database was hosted on digital ocean to ensure high availability.
@@ -52,11 +52,11 @@ Relational databse, MYSQL,  is the database of choice to store all user details 
 # Results
 ## Analytics
 Firstly, wanted to see the most common unique words(unigram) that appeared in tweets that contain bad language:
-![common words](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/Common%20words.png)
+![common words](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/Common%20words.png)
 As an be seen there are some words that are more general such as want, human etc, these are included here because they were used in contexts of tweets that are not kid appropriate but the words themselves are appropriate but the words that are strictly for bad language can be seen in there such as fuck, stupid, niggers etc.
 
 Also, it was ideal to visualize a word cloud of tweet that contain good language and ones that contain bad language, to see how different they are:
-![word cloud](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/Word%20cloud.png)
+![word cloud](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/Word%20cloud.png)
 As can be seen above, there is a clear difference in the good and bad language tweets, which is useful for us to differentiate and build a model to try and classify tweets according to this.
 
 
@@ -70,7 +70,7 @@ The distil Roberta model which has been pretrained on a huge corpus of tweets(mo
 #### f1: 0.9470952154920613
 
 The performance seems good, with the recall being almost 95%, which suggests the model does well in catching bad language tweets. To visualize all these metrics, the confusion matrix was used, the result is below here:
-![confusion matrix](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/confusion_matrix.png)
+![confusion matrix](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/confusion_matrix.png)
 As can be seen, a lot of bad language tweets were correctly predicted with only 376 out of 5483(false negatives) incorrectly predicted, also for good language tweets, only 336 were wrongly predicted as being bad language tweets. This shows the model would be robust in predicting if a tweet contains bad language or good language. They key here is to try to reduce the 376 false negatives to capture more bad language tweets, as thats the one we are most interested in predicting.
 
 ### Generative Model
@@ -86,13 +86,13 @@ The model was deployed using docker and kubernetes and hosted on digital ocean. 
 ### WebApp Demo
 Below is a demo of how the app works. PS: i had to take the app down, since it costs money to host the app on digital ocean(the docker containers, the kubernetes clusters and the mysql database).
 Demo of model predicting good language:
-![good language](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/good_language_demo.gif)
+![good language](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/good_language_demo.gif)
 Demo of model predicting bad language:
-![bad language](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/Bad_language_demo.gif)
+![bad language](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/Bad_language_demo.gif)
 
 As can be seen in the demos, the good language prediction is straight forward, the focus is on detecting the bad language, the model correctly detects that the tweet contains bad language that is not useful for kids, and generates appropriates recommendations for them to use to improve their tweets.
 
-![recommendations](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/recommendations.png)
+![recommendations](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/recommendations.png)
 The image above shows the recommendations generated, when bad language is detected, so in the demo, the actual tweet was : 
 * "piss off, you f**king b***ch, get the hell of here", 
 #### and the generated recommendations were : 
@@ -121,7 +121,7 @@ The performance of the model was based on user feedback, as they are the ones th
 
 * Percentage of correct good/normal language predictions: This gives a more accurate representation of the model's effectiveness, taking into account the total number of good/normal language predictions.
 Image below shows the monitoring of the model in production:
-![monitoring](https://github.com/webwizard0822/safe-social-NLP/blob/main/src/images/monitoring%20and%20alerting.png)
+![monitoring](https://github.com/webwizard0822/safe-social-NLP/blob/master/src/images/monitoring%20and%20alerting.png)
 The model so far is very good at predicting bad languages, with only one instance where a tweet contained good language was predicted to contain bad language. This is where we are most interested in, catching all bad languages so bad tweets arent sent out there for kids to consume, as can be seen with the 95.2% performance of the model.
 Good language tweets scored a little worse, even though our focus isnt solely on that, an improvement in that aspect is required. Because recall is the most important here, that is what was monitored. 
 This is the way model monitoring is done so far to keep track of the metrics of the model as users are interacting with the app, to get a sense of how the model is doing, and if the performance starts declining, appropriate measures are taken.
